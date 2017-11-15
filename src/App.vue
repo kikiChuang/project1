@@ -24,7 +24,7 @@
         <div class="songs">
           <template v-if="List">
              <li v-for="item in songsList">
-              {{item.name}} Singer:{{item.singer}}
+              {{item.name}}
                <div v-text="删除" v-on: click = "deleteTheSong(item.index)"></div>
              </li>
           </template>
@@ -36,7 +36,7 @@
 
 <script>
 export default({
-  e1: '#music-player',
+  e1: '#musicPlayer',
   data: {
     themes: ['./assets/2.jpg', './assets/3.jpg', './assets/4.jpg', './assets/5.jpg', './assets/6.jpg', './assets/1.jpg'],
     theme: './assets/2.jpg',
