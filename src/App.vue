@@ -2,8 +2,8 @@
   <div id="musicPlayer">
 
      <div class="backg">
-       <div class="BGicon" v-on: click ="changeThemeSwitch">
-         <img src="../assets/主题.png">
+       <div class="BGicon">
+         <img src="../assets/主题.png" v-on: click = "changeThemeSwitch">
        </div>
        <div class="options">
         <template v-if="option">
@@ -18,18 +18,33 @@
      </div>
 
      <div class="list">
-        <div class="Sicon" v-on: click = "showTheList">
-          <img src="../assets/列表.png">
+        <div class="Sicon">
+          <img src="../assets/列表.png" v-on: click = "showTheList">
         </div>
         <div class="songs">
           <template v-if="List">
              <li v-for="item in songsList">
               {{item.name}}
-               <div v-text="删除" v-on: click = "deleteTheSong(item.index)"></div>
              </li>
           </template>
         </div>
      </div>
+
+    <div class="player">
+      <div class="play">
+        <img src="../assets/播放图标.png" v-if="play" v-on:click = "pause()">
+        <img src="../assets/暂停.png" v-if="pause" v-on: click = "conti()">
+      </div>
+      <div class="text">
+        {{songsList[songIndex].name}} {{songsList[songIndex].singer}}
+      </div>
+      <div class="nextButton">
+        <img src="../assets/下一首.png" v-on:click = "next()">
+      </div>
+      <div class="lastButton">
+        <img src="../assets/上一首.png" v-on:click = "last()">
+      </div>
+    </div>
   </div>
 
 </template>
@@ -42,12 +57,15 @@ export default({
     theme: './assets/2.jpg',
     option: false,
     songsList: [
-      {index: 0, name: 'I knew you were trouble', singer: 'Taylor Swift', show: true},
-      {index: 1, name: 'As if it is the last', singer: 'Black Pink', show: true},
-      {index: 2, name: 'Playing with fire', singer: 'Black Pink', show: true},
-      {index: 3, name: 'Again', singer: 'YUI', show: true}
+      {index: 0, name: 'I knew you were trouble', singer: 'Taylor Swift'},
+      {index: 1, name: 'As if it is the last', singer: 'Black Pink'},
+      {index: 2, name: 'Playing with fire', singer: 'Black Pink'},
+      {index: 3, name: 'Again', singer: 'YUI'}
     ],
-    List: false
+    List: false,
+    songIndex: 0,
+    play: true,
+    pause: false
   },
   method: {
     changeThemeSwitch: function () {
@@ -56,8 +74,19 @@ export default({
     showTheList: function () {
       this.List = !this.List
     },
-    deleteTheSong: function (index) {
-      this.songsList[index].show = false
+    pause: function () {
+      this.play = false
+      this.pause = true
+    },
+    conti: function () {
+      this.play = true
+      this.pause = false
+    },
+    next: function () {
+      this.songIndex = (this.songIndex + 1) % (this.songsList.length)
+    },
+    last: function () {
+      this.songIndex = (this.songIndex - 1) % (this.songsList.length)
     }
   }
 })
