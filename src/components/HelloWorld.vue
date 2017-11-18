@@ -6,13 +6,16 @@
       </div>
       <div class="options">
         <template v-if="option">
-          <select v-model="theme">
-            <option v-for="item in themes">{{item}}</option>
-          </select>
+          <div class="lastBgI">
+            <img src="/static/img/背景图片切换1.png" v-on:click = "subBgI">
+          </div>
+          <div class="nextBgI">
+            <img src="/static/img/背景图片切换2.png" v-on:click = "incBgI">
+          </div>
         </template>
       </div>
       <div class="backgImg">
-        <img v-bind:src="theme">
+        <img v-bind:src="themes[backgImgIndex]">
       </div>
     </div>
 
@@ -60,7 +63,6 @@
     data () {
       return {
         themes: ['/static/img/1.jpg', '/static/img/2.jpg', '/static/img/3.jpg', '/static/img/4.jpg', '/static/img/5.jpg', '/static/img/6.jpg'],
-        theme: '/static/img/1.jpg',
         option: false,
         songsList: [
           {name: 'If you', singer: 'Bigbang'},
@@ -71,6 +73,7 @@
         List: false,
         nEmpty: true,
         songIndex: 0,
+        backgImgIndex: 0,
         play: true,
         playIcon: '/static/img/播放图标.png',
         pauseIcon: '/static/img/暂停.png',
@@ -113,6 +116,12 @@
           this.songsList.splice(0,1)
           this.nEmpty = true
         }
+      },
+      subBgI: function(){
+          this.backgImgIndex = (this.backgImgIndex + 5) % 6
+      },
+      incBgI: function(){
+          this.backgImgIndex = (this.backgImgIndex + 1) % 6
       }
     }
   })
@@ -263,6 +272,36 @@ a {
 }
 .textb img{
   opacity: 0.6;
+  display: block;
+  outline: none;
+  border:0;
+  height: 100%;
+  width: 100%;
+}
+.lastBgI{
+  position:fixed;
+  bottom: 10%;
+  left: 50%;
+  margin-left: -150px;
+  width:50px;
+  height: 50px;
+}
+.lastBgI img{
+  display: block;
+  outline: none;
+  border:0;
+  height: 100%;
+  width: 100%;
+}
+.nextBgI{
+  position:fixed;
+  bottom: 10%;
+  left: 50%;
+  margin-left: 100px;
+  width:50px;
+  height: 50px;
+}
+.nextBgI img{
   display: block;
   outline: none;
   border:0;
