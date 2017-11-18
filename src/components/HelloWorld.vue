@@ -23,11 +23,14 @@
       <ul class="songs">
         <template v-if="List" v-for="(item, index) in songsList">
           <li> {{item.name}} - {{item.singer}}
-            <a v-on:click = "deleteSong(index)">删除</a>
+            <a v-show="nEmpty" v-on:click = "deleteSong(index)">删除</a>
           </li>
           <br/>
         </template>
       </ul>
+      <div class="textb" v-if="List">
+        <img src="/static/img/textb.png">
+      </div>
     </div>
 
     <div class="player">
@@ -56,7 +59,7 @@
     name: 'HelloWorld',
     data () {
       return {
-        themes: ['/static/img/2.jpg', '/static/img/3.jpg', '/static/img/4.jpg', '/static/img/5.jpg', '/static/img/6.jpg', '/static/img/1.jpg'],
+        themes: ['/static/img/1.jpg', '/static/img/2.jpg', '/static/img/3.jpg', '/static/img/4.jpg', '/static/img/5.jpg', '/static/img/6.jpg'],
         theme: '/static/img/1.jpg',
         option: false,
         songsList: [
@@ -66,6 +69,7 @@
           {name: 'Again', singer: 'YUI'}
           ],
         List: false,
+        nEmpty: true,
         songIndex: 0,
         play: true,
         playIcon: '/static/img/播放图标.png',
@@ -90,11 +94,24 @@
         this.songIndex = (this.songIndex - 1 + this.songsList.length) % (this.songsList.length)
       },
       deleteSong: function(index){
+          if(this.nEmpty == false)
+          {
+              return
+          }
+          if(this.songsList.length == 1)
+          {
+            this.songsList.push({name: '请添加歌曲', singer: '请添加歌曲'})
+            this.nEmpty = false
+          }
           this.songsList.splice(index,1)
       },
       addNewSong: function(){
-          this.songsList.push({name: this.newSong, singer: 'Unknown'})
-          this.newSong = ''
+        this.songsList.push({name: this.newSong, singer: 'Unknown'})
+        this.newSong = ''
+        if(this.nEmpty == false){
+          this.songsList.splice(0,1)
+          this.nEmpty = true
+        }
       }
     }
   })
@@ -117,14 +134,20 @@ a {
   color: #42b983;
 }
 .songs {
+  position:absolute;
+  left: 0px;
+  top: 70px;
   text-align: left;
+  color: #FFFFFF;
+  font-size: 14px;
+  z-index:-1;
   }
 .BGicon{
   position:fixed;
   bottom: 0px;
   right: 0px;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
 }
 .BGicon img{
   display:block;
@@ -138,7 +161,7 @@ a {
   height: 100%;
   left:0;
   top:0;
-  z-index: -1;
+  z-index: -3;
   position: fixed;
 }
 .backgImg img{
@@ -152,8 +175,8 @@ a {
   position:fixed;
   top: 0px;
   left:0px;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
 }
 .Sicon img{
   display:block;
@@ -164,7 +187,7 @@ a {
 }
 .play{
   position:fixed;
-  top: 45%;
+  top: 50%;
   left: 50%;
   margin-top: -115px;
   margin-left: -115px;
@@ -181,7 +204,7 @@ a {
 }
 .nextButton{
   position:fixed;
-  top: 63%;
+  top: 50%;
   left: 70%;
   margin-top: -40px;
   margin-left: -75px;
@@ -197,7 +220,7 @@ a {
 }
 .lastButton{
   position:fixed;
-  top: 63%;
+  top: 50%;
   left: 30%;
   margin-top: -40px;
   margin-left: -75px;
@@ -221,7 +244,28 @@ a {
   top:10%;
   left:50%;
   height: 50px;
-  width: 1000px;
-  margin-left:-500px;
+  width: 600px;
+  margin-left:-300px;
+}
+.options{
+  position:fixed;
+  right: 0px;
+  bottom: 50px;
+}
+.textb {
+  width: 20%;
+  height: 100%;
+  left:0;
+  top:0;
+  z-index: -2;
+  position: fixed;
+}
+.textb img{
+  opacity: 0.6;
+  display: block;
+  outline: none;
+  border:0;
+  height: 100%;
+  width: 100%;
 }
 </style>
