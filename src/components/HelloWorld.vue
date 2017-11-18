@@ -104,6 +104,7 @@
             this.nEmpty = false
           }
           this.songsList.splice(index,1)
+          this.songIndex = this.songIndex % this.songsList.length
       },
       addNewSong: function(){
         this.songsList.push({name: this.newSong, singer: 'Unknown'})
