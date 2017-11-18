@@ -6,7 +6,8 @@
 - 添加歌曲
 - 删除歌曲
 
-## 总体界面
+# 总体界面
+![img](https://raw.githubusercontent.com/derFischer/project1/master/%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE(24).png)
 ## 播放部分功能键
 点击播放/暂停按键，可在播放/暂停中进行切换。<br/>
 网页上方显示正在播放的歌曲，点击上一首/下一首按键时，所显示播放歌曲会根据歌单顺序进行切换。
