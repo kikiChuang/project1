@@ -29,19 +29,13 @@ describe('HelloWorld.vue', () => {
     vm._watcher.run();
     expect(vm.songIndex).to.equal(3);
   })
-  /*
-  下面这个测试感觉代码有问题...可能是按Enter事件写错了，但是实在没有查到QAQ
-    it('add new song', () => {
+  it('add new song', () => {
     const Constructor = Vue.extend(HelloWorld);
     const vm = new Constructor().$mount();
-    vm.newSong = 'MINO';
-    const inP = vm.$el.querySelector('#input');
-    var e = new window.Event('keyup');
-    e.which = 13;
-    inP.dispatchEvent(e);
+    vm.addNewSong();
     vm._watcher.run();
-    expect(vm.songsList).to.contain({name: 'MINO', singer: 'Unknown'});
-  })*/
+    expect(vm.songsList.length).to.equal(5);
+  })
   it('Slist', () => {
     const Constructor = Vue.extend(HelloWorld);
     const vm = new Constructor().$mount();
@@ -118,7 +112,7 @@ describe('HelloWorld.vue', () => {
     vm._watcher.run();
     expect(vm.songsList.length).to.equal(1);
   })
-  it('deleteAllSong', () => {
+  it('deleteAllSongThenDelete', () => {
     const Constructor = Vue.extend(HelloWorld);
     const vm = new Constructor().$mount();
     const SList = vm.$el.querySelector('#Sicon');
@@ -136,6 +130,27 @@ describe('HelloWorld.vue', () => {
     delte.dispatchEvent(e);
     vm._watcher.run();
     delte.dispatchEvent(e);
+    vm._watcher.run();
+    expect(vm.songsList.length).to.equal(1);
+  })
+  it('deleteAllSongThenAdd', () => {
+    const Constructor = Vue.extend(HelloWorld);
+    const vm = new Constructor().$mount();
+    const SList = vm.$el.querySelector('#Sicon');
+    var e = new window.Event('click');
+    SList.dispatchEvent(e);
+    vm._watcher.run();
+    expect(vm.List).to.equal(true);
+    const delte = vm.$el.querySelector('a');
+    delte.dispatchEvent(e);
+    vm._watcher.run();
+    delte.dispatchEvent(e);
+    vm._watcher.run();
+    delte.dispatchEvent(e);
+    vm._watcher.run();
+    delte.dispatchEvent(e);
+    vm._watcher.run();
+    vm.addNewSong();
     vm._watcher.run();
     expect(vm.songsList.length).to.equal(1);
   })
