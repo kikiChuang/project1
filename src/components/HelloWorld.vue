@@ -2,15 +2,15 @@
   <div class="hello">
     <div class="backg">
       <div class="BGicon">
-        <img src="/static/img/主题.png" v-on:click = "changeThemeSwitch">
+        <img id="BGicon" src="/static/img/主题.png" v-on:click = "changeThemeSwitch">
       </div>
       <div class="options">
         <template v-if="option">
           <div class="lastBgI">
-            <img src="/static/img/背景图片切换1.png" v-on:click = "subBgI">
+            <img id="lastBgI" src="/static/img/背景图片切换1.png" v-on:click = "subBgI">
           </div>
           <div class="nextBgI">
-            <img src="/static/img/背景图片切换2.png" v-on:click = "incBgI">
+            <img id="nextBgI" src="/static/img/背景图片切换2.png" v-on:click = "incBgI">
           </div>
         </template>
       </div>
@@ -21,7 +21,7 @@
 
     <div class="list">
       <div class="Sicon">
-        <img src="/static/img/列表.png" v-on:click = "showTheList">
+        <img id="Sicon" src="/static/img/列表.png" v-on:click = "showTheList">
       </div>
       <ul class="songs">
         <template v-if="List" v-for="(item, index) in songsList">
@@ -44,15 +44,15 @@
         {{songsList[songIndex].name}} - {{songsList[songIndex].singer}}
       </div>
       <div class="nextButton">
-        <img src="/static/img/下一首.png" v-on:click = "next">
+        <img id="nextButton" src="/static/img/下一首.png" v-on:click = "next">
       </div>
       <div class="lastButton">
-        <img src="/static/img/上一首.png" v-on:click = "last">
+        <img id="lastButton" src="/static/img/上一首.png" v-on:click = "last">
       </div>
     </div>
 
     <div class="input">
-      <input placeholder="请添加歌曲" v-model="newSong" v-on:keyup.enter = "addNewSong">
+      <input id="input" placeholder="请添加歌曲" v-model="newSong" v-on:keyup.enter = "addNewSong">
     </div>
   </div>
 </template>
