@@ -25,5 +25,8 @@
 点击歌曲后的删除，可对这首歌进行删除。如果这首歌正在播放，则播放歌曲跳转为未删除前的下一首。若所有歌曲均被删除，则会显示“请添加歌曲-请添加歌曲”
 ![img
 ](https://raw.githubusercontent.com/derFischer/project1/master/%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%88%A0%E9%99%A4%E6%AD%8C%E6%9B%B2.gif)
-# 总体演示
+## 总体演示
 ![img](https://raw.githubusercontent.com/derFischer/project1/master/%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/%E6%80%BB%E4%BD%93.gif)
+# 单元测试
+coverage均达到100%，测试均已通过。
+![img](https://raw.githubusercontent.com/derFischer/project1/master/%E6%BC%94%E7%A4%BA%E5%8A%A8%E7%94%BB/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95.png)
